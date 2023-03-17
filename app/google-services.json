@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "983738278272",
+    "project_id": "zikaapp-610aa",
+    "storage_bucket": "zikaapp-610aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983738278272:android:944aadb4259b2bdbbfa165",
+        "android_client_info": {
+          "package_name": "com.example.zikacrm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "983738278272-re8kt540os5ap2raa5lonlssf7b5vmje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG4dwwOgHCXavXwgzmPHsLaWqUVj1T9Ds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "983738278272-re8kt540os5ap2raa5lonlssf7b5vmje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
