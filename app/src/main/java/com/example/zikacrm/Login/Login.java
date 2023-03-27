@@ -77,7 +77,7 @@ public class Login extends AppCompatActivity {
                     db.collection("users").document(mAuth.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            if (documentSnapshot.get("type").equals("Provider")) {
+                            if (documentSnapshot.get("provider").equals(true)) {
                                 finish();
                                 Toast.makeText(Login.this, "Sesion iniciada de " + email, Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(Login.this, ProviderProfile.class));

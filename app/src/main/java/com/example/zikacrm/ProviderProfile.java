@@ -20,7 +20,7 @@ public class ProviderProfile extends AppCompatActivity {
     private FirebaseFirestore db;
 
     TextView provider_name, provider_email, company, description;
-    Button btn_LogOut;
+    Button btn_LogOut, services_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,7 @@ public class ProviderProfile extends AppCompatActivity {
         company = findViewById(R.id.textView17);
         description = findViewById(R.id.textView18);
         btn_LogOut = findViewById(R.id.btn_logOut2);
+        services_list = findViewById(R.id.btn_service_list);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -42,6 +43,12 @@ public class ProviderProfile extends AppCompatActivity {
                 mAuth.signOut();
                 finish();
                 startActivity(new Intent(ProviderProfile.this, Login.class));
+            }
+        });
+        services_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProviderProfile.this, ventas.class));
             }
         });
         getUser();

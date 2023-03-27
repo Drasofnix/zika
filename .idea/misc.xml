@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/jagua/AndroidStudioProjects/ZIKACRM/app/src/main/res/layout/activity_crear_servicio.xml" value="0.165625" />
         <entry key="..\:/Users/jagua/AndroidStudioProjects/ZIKACRM/app/src/main/res/layout/activity_home.xml" value="0.1796875" />
+        <entry key="..\:/Users/jagua/AndroidStudioProjects/ZIKACRM/app/src/main/res/layout/activity_ventas.xml" value="0.1796875" />
         <entry key="..\:/Users/jagua/AndroidStudioProjects/ZIKACRM/app/src/main/res/layout/agenda.xml" value="0.1796875" />
+        <entry key="..\:/Users/jagua/AndroidStudioProjects/ZIKACRM/app/src/main/res/layout/create_service.xml" value="0.1796875" />
         <entry key="..\:/Users/jagua/AndroidStudioProjects/ZIKACRM/app/src/main/res/layout/fragment_first.xml" value="0.25" />
         <entry key="..\:/Users/jagua/AndroidStudioProjects/ZIKACRM/app/src/main/res/layout/fragment_home.xml" value="0.165625" />
         <entry key="..\:/Users/jagua/AndroidStudioProjects/ZIKACRM/app/src/main/res/layout/fragment_second.xml" value="0.1796875" />
@@ -14,7 +17,9 @@
         <entry key="..\:/Users/jagua/AndroidStudioProjects/ZIKACRM/app/src/main/res/layout/service_list.xml" value="0.1796875" />
         <entry key="..\:/Users/jagua/AndroidStudioProjects/ZIKACRM/app/src/main/res/layout/signup_layout.xml" value="0.1796875" />
         <entry key="..\:/Users/jagua/AndroidStudioProjects/ZIKACRM/app/src/main/res/layout/update_user_layout.xml" value="0.1796875" />
+        <entry key="..\:/Users/jagua/AndroidStudioProjects/ZIKACRM/app/src/main/res/layout/venta_item.xml" value="0.1796875" />
         <entry key="..\:/Users/jagua/AndroidStudioProjects/ZIKACRM/app/src/main/res/layout/ventas.xml" value="0.1796875" />
+        <entry key="..\:/Users/jagua/AndroidStudioProjects/ZIKACRM/app/src/main/res/layout/ventas_element.xml" value="0.17864583333333334" />
       </map>
     </option>
   </component>

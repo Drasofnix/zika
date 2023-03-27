@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,12 +25,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class signup extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class signup extends AppCompatActivity{
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     EditText txt_name, txt_email, txt_pass, txt_conPass;
     Button btn_signup, btn_alreadyAccount;
+    CheckBox isProvider;
 
 
     @Override
@@ -46,11 +45,7 @@ public class signup extends AppCompatActivity implements AdapterView.OnItemSelec
         txt_conPass = findViewById(R.id.rgstr_conPass);
         btn_signup = findViewById(R.id.btn_signup);
         btn_alreadyAccount = findViewById(R.id.btn_account);
-        Spinner provider = findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.type_user, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        provider.setAdapter(adapter);
-        provider.setOnItemSelectedListener(this);
+        isProvider = findViewById(R.id.checkBox);
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -62,7 +57,7 @@ public class signup extends AppCompatActivity implements AdapterView.OnItemSelec
                 String password = txt_pass.getText().toString().trim();
                 String name = txt_name.getText().toString().trim();
                 String confirmPass = txt_conPass.getText().toString().trim();
-                String provider = provider;
+                boolean provider = isProvider.isChecked();
 
                 if (!password.equals(confirmPass) ) {
                     Toast.makeText(signup.this, "Las contraseñas no son iguales", Toast.LENGTH_SHORT).show();
@@ -80,7 +75,7 @@ public class signup extends AppCompatActivity implements AdapterView.OnItemSelec
         });
     }
 
-    private void SignUp(String email, String password, String name, Spinner provider) {
+    private void SignUp(String email, String password, String name, boolean provider) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -90,7 +85,7 @@ public class signup extends AppCompatActivity implements AdapterView.OnItemSelec
                 map.put("email", email);
                 map.put("name", name);
                 map.put("password", password);
-                map.put("type", provider);
+                map.put("provider", provider);
 
                 db.collection("users").document(id).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -112,15 +107,5 @@ public class signup extends AppCompatActivity implements AdapterView.OnItemSelec
                 Toast.makeText(signup.this, "Error", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String type = parent.getItemAtPosition(position).toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        String type = "Client";
     }
 }

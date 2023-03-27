@@ -107,6 +107,13 @@
                                 android:background="#0099FF"
                                 android:text="LogOut" />
 
+                            <Button
+                                android:id="@+id/btn_service_list"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#0099FF"
+                                android:text="Services" />
+
                         </LinearLayout>
                     </LinearLayout>
 

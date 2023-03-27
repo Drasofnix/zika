@@ -118,13 +118,16 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="409dp"
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="193dp"
+        android:layout_marginBottom="13dp"
+        android:minHeight="48dp"
+        android:text="U are a provider?"
         app:layout_constraintBottom_toTopOf="@+id/btn_signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
