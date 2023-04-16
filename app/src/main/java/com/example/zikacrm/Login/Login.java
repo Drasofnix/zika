@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.zikacrm.Crear_servicio;
 import com.example.zikacrm.ProfileUser;
 import com.example.zikacrm.ProviderProfile;
 import com.example.zikacrm.R;
@@ -35,6 +35,7 @@ public class Login extends AppCompatActivity {
     
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        java.text.DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
         

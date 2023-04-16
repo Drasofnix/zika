@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.zikacrm.Login.Login;
-import com.example.zikacrm.SignUp.signup;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class crear_servicio extends AppCompatActivity {
+public class Crear_servicio extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -56,7 +54,7 @@ public class crear_servicio extends AppCompatActivity {
     public void newService(String sTitle, String sDescription, Float sPrice){
         String id = mAuth.getCurrentUser().getUid();
         Map<String, Object> service = new HashMap<>();
-        service.put("privider_id", id);
+        service.put("provider_id", id);
         service.put("title", sTitle);
         service.put("description", sDescription);
         service.put("price", sPrice);
@@ -65,16 +63,16 @@ public class crear_servicio extends AppCompatActivity {
                 .set(service)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(Void aVoid) {
+                    public void onSuccess(Void Void) {
                         finish();
-                        Toast.makeText(crear_servicio.this, "Registrado Correctamente", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(crear_servicio.this, ventas.class));
+                        Toast.makeText(Crear_servicio.this, "Registrado Correctamente", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(Crear_servicio.this, Ventas.class));
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(crear_servicio.this, "Error al Registrar Servicio", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Crear_servicio.this, "Error al Registrar Servicio", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

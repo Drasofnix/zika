@@ -13,28 +13,6 @@
         android:theme="@style/Theme.ZIKACRM"
         tools:targetApi="31">
         <activity
-            android:name=".crear_servicio"
-            android:exported="false" />
-        <activity
-            android:name=".ventas"
-            android:exported="false" />
-        <activity
-            android:name=".Home"
-            android:exported="false"
-            android:label="@string/title_activity_home"
-            android:theme="@style/Theme.ZIKACRM.NoActionBar" />
-        <activity
-            android:name=".UpdateUser"
-            android:exported="false" />
-        <activity
-            android:name=".SignUp.signup"
-            android:exported="false"
-            android:theme="@style/Theme.ZIKACRM.NoActionBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".Login.Login"
             android:exported="true"
             android:theme="@style/Theme.ZIKACRM.NoActionBar">
@@ -49,20 +27,36 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Services"
+            android:exported="false" />
+        <activity
+            android:name=".Crear_servicio"
+            android:exported="false" />
+        <activity
+            android:name=".Ventas"
+            android:exported="false" />
+        <activity
+            android:name=".Home"
+            android:exported="false"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.ZIKACRM.NoActionBar" />
+        <activity
+            android:name=".UpdateUser"
+            android:exported="false" />
+        <activity
+            android:name=".SignUp.signup"
+            android:exported="false"
+            android:theme="@style/Theme.ZIKACRM.NoActionBar">
+        </activity>
+        <activity
             android:name=".ProfileUser"
             android:exported="false"
             android:theme="@style/Theme.ZIKACRM.NoActionBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".ProviderProfile"
             android:exported="false"
             android:theme="@style/Theme.ZIKACRM.NoActionBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
     </application>
 

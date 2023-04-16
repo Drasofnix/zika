@@ -8,17 +8,17 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHolder>{
-    private List<ListService> mData;
-    private LayoutInflater mInflater;
-    private Context context;
+    ArrayList<ListService> mData;
+    Context context;
 
-    public ServicesAdapter(List<ListService> itemList, Context context){
-        this.mInflater = LayoutInflater.from(context);
+    public ServicesAdapter(Context context,ArrayList<ListService> mData) {
+
         this.context = context;
-        this.mData = itemList;
+        this.mData = mData;
     }
 
     @Override
@@ -26,23 +26,23 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
 
     @Override
     public ServicesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View view = mInflater.inflate(R.layout.activity_ventas, null);
-        return new ServicesAdapter.ViewHolder(view);
+        View v = LayoutInflater.from(context).inflate(R.layout.activity_main,parent, false);
+        return new ViewHolder(v);
     }
 
     @Override
-    public  void onBindViewHolder(final ServicesAdapter.ViewHolder holder, final int position){
-        holder.binData(mData.get(position));
+    public  void onBindViewHolder(final ServicesAdapter.ViewHolder holder, int position){
+        ListService service = mData.get(position);
+
+        holder.name.setText(service.name);
     }
 
-    public void setItems(List<ListService> items) {mData = items;}
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;
 
         ViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.textView3);
+            name = itemView.findViewById(R.id.Name);
         }
 
         void binData(final ListService item){

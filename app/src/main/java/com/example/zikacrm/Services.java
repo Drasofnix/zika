@@ -1,0 +1,89 @@
+package com.example.zikacrm;
+
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+import android.sax.Element;
+import android.util.Log;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Services extends AppCompatActivity {
+
+    FirebaseFirestore db;
+    RecyclerView recyclerView;
+    ServicesAdapter servicesAdapter;
+    ArrayList<ListService> serviceArrayList;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        recyclerView = findViewById(R.id.listRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        db = FirebaseFirestore.getInstance();
+        serviceArrayList = new ArrayList<ListService>();
+        servicesAdapter = new ServicesAdapter(Services.this,serviceArrayList);
+
+        recyclerView.setAdapter(servicesAdapter);
+        EventChangeListener();
+    }
+
+    private void EventChangeListener() {
+        db.collection("Services")
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null){
+                            Log.e("Firestore error", error.getMessage());
+                            return;
+                        }else{
+                            for (DocumentChange dc : value.getDocumentChanges()){
+                                if(dc.getType() == DocumentChange.Type.ADDED){
+                                    serviceArrayList.add(dc.getDocument().toObject(ListService.class));
+                                }
+                                servicesAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+                });
+    }
+
+    /*public void init() {
+        elements = new ArrayList<>();
+        db.collection("services")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                elements.add(document);
+                                ServicesAdapter listService = new ServicesAdapter(elements, this);
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }*/
+}
