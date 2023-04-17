@@ -14,6 +14,7 @@ import com.example.zikacrm.Crear_servicio;
 import com.example.zikacrm.ProfileUser;
 import com.example.zikacrm.ProviderProfile;
 import com.example.zikacrm.R;
+import com.example.zikacrm.Services;
 import com.example.zikacrm.SignUp.signup;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -85,7 +86,7 @@ public class Login extends AppCompatActivity {
                             }else{
                                 finish();
                                 Toast.makeText(Login.this, "Sesion iniciada de " + email, Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(Login.this, ProfileUser.class));
+                                startActivity(new Intent(Login.this, Services.class));
                             }
                         }
                     });

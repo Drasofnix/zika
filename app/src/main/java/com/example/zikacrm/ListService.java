@@ -1,18 +1,17 @@
 package com.example.zikacrm;
 
 public class ListService {
-    String name;
+    String title;
 
-    public ListService(){}
-    public ListService(String name) {
-        this.name = name;
+    public ListService(String title) {
+        this.title = title;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

@@ -2,27 +2,24 @@ package com.example.zikacrm;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.sax.Element;
 import android.util.Log;
+import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Services extends AppCompatActivity {
 
@@ -38,10 +35,9 @@ public class Services extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.listRecyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         db = FirebaseFirestore.getInstance();
-        serviceArrayList = new ArrayList<ListService>();
+        serviceArrayList =new ArrayList<ListService>();
         servicesAdapter = new ServicesAdapter(Services.this,serviceArrayList);
 
         recyclerView.setAdapter(servicesAdapter);
@@ -49,24 +45,36 @@ public class Services extends AppCompatActivity {
     }
 
     private void EventChangeListener() {
-        db.collection("Services")
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if (error != null){
-                            Log.e("Firestore error", error.getMessage());
-                            return;
-                        }else{
-                            for (DocumentChange dc : value.getDocumentChanges()){
-                                if(dc.getType() == DocumentChange.Type.ADDED){
-                                    serviceArrayList.add(dc.getDocument().toObject(ListService.class));
-                                }
-                                servicesAdapter.notifyDataSetChanged();
-                            }
-                        }
+        Toast.makeText(Services.this, "Iniciado Correctamente", Toast.LENGTH_SHORT).show();
+        db.collection("services").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    Log.w(TAG, "Listen failed.", error);
+                    return;
+                }
+                Toast.makeText(Services.this, "hola", Toast.LENGTH_SHORT).show();
+                for (DocumentChange dc : value.getDocumentChanges()) {
+                    switch (dc.getType()) {
+                        case ADDED:
+                            serviceArrayList.add((ListService) dc.getDocument().getData());
+                            Toast.makeText(Services.this, dc.getDocument().getData().toString(), Toast.LENGTH_SHORT).show();
+                            break;
+                        case MODIFIED:
+                            break;
+                        case REMOVED:
+                            break;
                     }
-                });
+                }
+                /*for (DocumentSnapshot dc : value.getDocuments()) {
+                    serviceArrayList.add(dc.getData());
+                    Toast.makeText(Services.this, serviceArrayList.toString(), Toast.LENGTH_SHORT).show();
+                    servicesAdapter.notifyDataSetChanged();
+                }*/
+            }
+        });
     }
+
 
     /*public void init() {
         elements = new ArrayList<>();

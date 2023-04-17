@@ -44,7 +44,7 @@ public class Crear_servicio extends AppCompatActivity {
             public void onClick(View v) {
                 String sTitle = title.getText().toString();
                 String sDescription = description.getText().toString();
-                Float sPrice = price.getAlpha();
+                Float sPrice = Float.valueOf(price.getText().toString());
 
                 newService(sTitle, sDescription, sPrice);
             }
@@ -55,11 +55,12 @@ public class Crear_servicio extends AppCompatActivity {
         String id = mAuth.getCurrentUser().getUid();
         Map<String, Object> service = new HashMap<>();
         service.put("provider_id", id);
+        service.put("email_provider",mAuth.getCurrentUser().getEmail());
         service.put("title", sTitle);
         service.put("description", sDescription);
         service.put("price", sPrice);
 
-        db.collection("services").document("LA")
+        db.collection("services").document()
                 .set(service)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

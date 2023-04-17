@@ -9,13 +9,13 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHolder>{
-    ArrayList<ListService> mData;
-    Context context;
 
-    public ServicesAdapter(Context context,ArrayList<ListService> mData) {
+    Context context;
+    ArrayList<ListService> mData;
+    public ServicesAdapter(Context context, ArrayList<ListService> mData) {
 
         this.context = context;
         this.mData = mData;
@@ -34,19 +34,19 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
     public  void onBindViewHolder(final ServicesAdapter.ViewHolder holder, int position){
         ListService service = mData.get(position);
 
-        holder.name.setText(service.name);
+        holder.title.setText(service.getTitle());
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView title;
 
         ViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.Name);
+            title = itemView.findViewById(R.id.Name);
         }
 
         void binData(final ListService item){
-            name.setText(item.getName());
+            title.setText(item.getTitle());
         }
     }
 }
