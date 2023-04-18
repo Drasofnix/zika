@@ -1,9 +1,10 @@
 package com.example.zikacrm;
 
-public class ListService {
+public class ServicesModel {
     String title;
 
-    public ListService(String title) {
+    public ServicesModel(){}
+    public ServicesModel(String title) {
         this.title = title;
     }
 
