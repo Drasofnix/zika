@@ -1,5 +1,6 @@
 package com.example.zikacrm;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,8 +20,9 @@ public class ProfileUser extends AppCompatActivity {
     private FirebaseFirestore db;
 
     TextView user_phone, user_address, email_user, name_user;
-    Button btn_update, btn_logOut;
+    Button btn_update, btn_logOut, ventasList;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class ProfileUser extends AppCompatActivity {
         user_phone = findViewById(R.id.txt_phone_user);
         btn_logOut = findViewById(R.id.btn_logOut);
         btn_update = findViewById(R.id.btn_update);
+        ventasList = findViewById(R.id.btn_ventas_list);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -49,6 +52,13 @@ public class ProfileUser extends AppCompatActivity {
                 mAuth.signOut();
                 finish();
                 startActivity(new Intent(ProfileUser.this, Login.class));
+            }
+        });
+
+        ventasList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileUser.this, Ventas.class));
             }
         });
         getUser();

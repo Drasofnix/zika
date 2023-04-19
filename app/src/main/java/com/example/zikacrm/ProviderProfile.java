@@ -48,7 +48,7 @@ public class ProviderProfile extends AppCompatActivity {
         services_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProviderProfile.this, Ventas.class));
+                startActivity(new Intent(ProviderProfile.this, Services.class));
             }
         });
         getUser();

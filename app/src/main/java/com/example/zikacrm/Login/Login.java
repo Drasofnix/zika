@@ -86,7 +86,7 @@ public class Login extends AppCompatActivity {
                             }else{
                                 finish();
                                 Toast.makeText(Login.this, "Sesion iniciada de " + email, Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(Login.this, Services.class));
+                                startActivity(new Intent(Login.this, ProfileUser.class));
                             }
                         }
                     });

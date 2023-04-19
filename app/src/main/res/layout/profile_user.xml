@@ -83,7 +83,7 @@
                     <LinearLayout
                         android:id="@+id/linearLayout"
                         android:layout_width="341dp"
-                        android:layout_height="399dp"
+                        android:layout_height="450dp"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="24dp"
@@ -201,6 +201,13 @@
                                 android:layout_height="60dp"
                                 android:backgroundTint="#0099FF"
                                 android:text="LogOut" />
+
+                            <Button
+                                android:id="@+id/btn_ventas_list"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#0099FF"
+                                android:text="Ventas" />
 
                         </LinearLayout>
 

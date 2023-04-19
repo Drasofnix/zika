@@ -1,69 +1,68 @@
 package com.example.zikacrm;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
 
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.example.zikacrm.Adapters.ServicesAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class Services extends AppCompatActivity {
 
     FirebaseFirestore db;
-    RecyclerView recyclerView;
+    ListView listView;
     ServicesAdapter servicesAdapter;
+
+    Button newService;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.listRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
+
+        listView = (ListView) findViewById(R.id.listServicios);
 
         db = FirebaseFirestore.getInstance();
-        Query query = db.collection("services");
 
-        FirestoreRecyclerOptions<ServicesModel> firestormRecyclerOptions = new FirestoreRecyclerOptions.Builder<ServicesModel>().setQuery(query, ServicesModel.class).build();
+        newService = findViewById(R.id.button_to_ns);
 
-        servicesAdapter = new ServicesAdapter(firestormRecyclerOptions);
-        servicesAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(servicesAdapter);
+        newService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Services.this, Crear_servicio.class));
+            }
+        });
+
+        EventChangeListener();
     }
+    private void EventChangeListener() {
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        servicesAdapter.startListening();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        servicesAdapter.stopListening();
-    }
-/*private void EventChangeListener() {
-
-        final String[] title={(String) getTitle()};
         db.collection("services").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        title[0]=(String) document.get("title");
-                        serviceArrayList.add(title);
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    if(task.getResult().size() != 0){
+                        servicesAdapter = new ServicesAdapter(Services.this, task.getResult());
+                        listView.setAdapter(servicesAdapter);
                     }
                 } else {
-                    Log.d(TAG, "get failed with ", task.getException());
+
                 }
             }
         });
+    }
 
-                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+               /* .addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (error != null) {
