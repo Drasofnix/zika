@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Ventas">
+    tools:context=".Ventas"
+    android:background="@drawable/gradient_background_color">
 
     <TextView
         android:id="@+id/titleTextView"
@@ -13,7 +14,7 @@
         android:layout_marginTop="20dp"
         android:text="Ventas
 "
-        android:textColor="#0B0A0A"
+        android:textColor="#F8F5F5"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

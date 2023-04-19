@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Services">
+    tools:context=".Services"
+    android:background="@drawable/gradient_background_color">
 
     <TextView
         android:id="@+id/titleTextView"
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Service List"
-        android:textColor="#0B0A0A"
+        android:textColor="#FAF8F8"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,8 +39,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="19dp"
         android:layout_marginBottom="28dp"
-        android:background="#0099FF"
         android:text="New Service"
+        android:background="#008382"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
